@@ -9,5 +9,4 @@ class ExaAvaApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }
