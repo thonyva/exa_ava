@@ -9,5 +9,4 @@ public class ExaAvaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ExaAvaApplication.class, args);
 	}
-
 }
