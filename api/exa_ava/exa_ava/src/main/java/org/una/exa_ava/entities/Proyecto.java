@@ -42,7 +42,7 @@ public class Proyecto implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nombre", length = 100)
+    @Column(name = "nombre", length = 50)
     private String nombre;
     
     @Column
@@ -51,10 +51,10 @@ public class Proyecto implements Serializable {
     @Column(name = "descripcion", length = 200)
     private String descripcion;
     
-    @Column(name = "fecha_registro", updatable = false)
+    @Column(name = "fecha_inicio", updatable = false)
     @Temporal(TemporalType.DATE)
     @Setter(AccessLevel.NONE)
-    private Date fechaRegistro;
+    private Date fechaInicio;
 
     @Column(name = "fecha_modificacion")
     @Setter(AccessLevel.NONE)
@@ -66,7 +66,7 @@ public class Proyecto implements Serializable {
     @PrePersist
     public void prePersist() {
         estado=true;
-        fechaRegistro = new Date();
+        fechaInicio = new Date();
         fechaModificacion = new Date();
     }
 
