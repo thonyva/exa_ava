@@ -11,7 +11,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.una.exa_ava.dto.ProyectoDTO;
+import org.una.exa_ava.entities.Proyecto;
 import org.una.exa_ava.repositories.IProyectoRepository;
+import org.una.exa_ava.utils.MapperUtils;
 
 /**
  *
@@ -25,8 +28,10 @@ public class ProyectoServiceImplementation implements IProyectoService {
     
     @Override
     @Transactional
-    public Proyecto create(Proyecto proyecto) {
-        return proyectoRepository.save(proyecto);
+    public ProyectoDTO create(ProyectoDTO proyecto) {
+        Proyecto proyectoCrear = MapperUtils.EntityFromDto(proyecto, Proyecto.class);
+        ProyectoCrear = proyectoRepository.save(proyectoCrear);
+        return MapperUtils.DtoFromEntity(proyectoCrear, ProyectoDTO.class);
     }
     
     @Override

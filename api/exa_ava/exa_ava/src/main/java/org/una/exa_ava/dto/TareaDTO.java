@@ -31,32 +31,12 @@ import lombok.ToString;
 @ToString
 
 public class TareaDTO {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    @Column(length = 50)
     private String nombre;
-    
-    @Column(length = 200)
     private String descripcion;
-    
-    @Column(name = "fecha_inicio", updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    @Setter(AccessLevel.NONE)
     private Date fechaInicio;
-
-    @Column(name = "fecha_modificacion", updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    @Setter(AccessLevel.NONE)
     private Date fechaModificacion;
-
-    @Column
     private double importancia;
-    
-    @Column
     private double urgencia;
-    
-    @Column(name = "procentaje_avance")
     private double procentajeAvance;
 }

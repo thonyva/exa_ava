@@ -30,26 +30,10 @@ import lombok.ToString;
 @ToString
 
 public class ProyectoDTO {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(length = 50)
     private String nombre;
-    
-    @Column
     private boolean estado;
-    
-    @Column(length = 200)
     private String descripcion;
-    
-    @Column(name = "fecha_inicio", updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    @Setter(AccessLevel.NONE)
     private Date fechaInicio;
-
-    @Column(name = "fecha_modificacion", updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    @Setter(AccessLevel.NONE)
     private Date fechaModificacion;
 }
