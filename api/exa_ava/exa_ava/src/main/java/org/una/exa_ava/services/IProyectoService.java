@@ -19,6 +19,7 @@ public interface IProyectoService {
     public ProyectoDTO create(ProyectoDTO proyecto);
     public Optional<ProyectoDTO> update(ProyectoDTO proyecto, Long id);
     public void delete(Long id);
+    public void deleteAll();
     public Optional<ProyectoDTO> findById(Long id);
     public Optional<List<ProyectoDTO>> findAll();
 }

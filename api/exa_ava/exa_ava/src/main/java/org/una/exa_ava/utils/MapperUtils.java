@@ -27,16 +27,22 @@ public class MapperUtils {
     }
 
     private MapperUtils() {
-        
     }
 
     public static <D, E> D DtoFromEntity(final E entity, Class<D> dtoClass) {
         return modelMapper.map(entity, dtoClass);
     }
 
-    public static <D, E> List<D> DtoListFromEntityList(final Collection<E> entityList, Class<D> dtoClass) {
-        return entityList.stream()
-                .map(entity -> DtoFromEntity(entity, dtoClass))
-                .collect(Collectors.toList());
+    
+    public static <E, D> E EntityFromDto(final D dto, Class<E> entityClass) {
+        return modelMapper.map(dto, entityClass);
     }
-}
+    
+    public static <D, E> List<D> DtoListFromEntityList(final Collection<E> entityList, Class<D> dtoClass) {
+        return entityList.stream().map(entity -> DtoFromEntity(entity, dtoClass)).collect(Collectors.toList());
+    }
+    
+    public static <D, E> List<E> EntityListFromDtoList(final Collection<D> dtoList, Class<E> entityClass){
+        return dtoList.stream().map(dto -> EntityFromDto(dto, entityClass)).collect(Collectors.toList());
+    }
+} 

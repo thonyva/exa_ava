@@ -62,12 +62,17 @@ public class TareaServiceImplementation implements ITareaService {
     @Override
     @Transactional(readOnly = true)
     public Optional<TareaDTO> findById(Long id) {
-        return tareaRepository.findById(id);
+        return ServiceConvertionHelper.oneToOptionalDto(tareaRepository.findById(id), TareaDTO.class);
     }
     
     @Override
     @Transactional(readOnly = true)
     public Optional<List<TareaDTO>> findAll() {
         return ServiceConvertionHelper.findList(tareaRepository.findAll(), TareaDTO.class);
+    }
+
+    @Override
+    public Optional<List<TareaDTO>> findByProyectoId(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

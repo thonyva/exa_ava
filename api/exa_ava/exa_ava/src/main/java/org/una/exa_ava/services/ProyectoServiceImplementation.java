@@ -15,6 +15,7 @@ import org.una.exa_ava.dto.ProyectoDTO;
 import org.una.exa_ava.entities.Proyecto;
 import org.una.exa_ava.repositories.IProyectoRepository;
 import org.una.exa_ava.utils.MapperUtils;
+import org.una.exa_ava.utils.ServiceConvertionHelper;
 
 /**
  *
@@ -30,15 +31,17 @@ public class ProyectoServiceImplementation implements IProyectoService {
     @Transactional
     public ProyectoDTO create(ProyectoDTO proyecto) {
         Proyecto proyectoCrear = MapperUtils.EntityFromDto(proyecto, Proyecto.class);
-        ProyectoCrear = proyectoRepository.save(proyectoCrear);
+        proyectoCrear = proyectoRepository.save(proyectoCrear);
         return MapperUtils.DtoFromEntity(proyectoCrear, ProyectoDTO.class);
     }
     
     @Override
     @Transactional
-    public Optional<Proyecto> update(Proyecto proyecto, Long id) {
+    public Optional<ProyectoDTO> update(ProyectoDTO proyecto, Long id) {
         if (proyectoRepository.findById(id).isPresent()) {
-            return Optional.ofNullable(proyectoRepository.save(proyecto));
+            Proyecto proyectoEditar = MapperUtils.EntityFromDto(proyecto, Proyecto.class);
+            proyectoEditar = proyectoRepository.save(proyectoEditar);
+            return Optional.ofNullable(MapperUtils.DtoFromEntity(proyectoEditar, ProyectoDTO.class));
         } else {
             return null;
         }
@@ -58,13 +61,13 @@ public class ProyectoServiceImplementation implements IProyectoService {
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<Proyecto> findById(Long id) {
-        return proyectoRepository.findById(id);
+    public Optional<ProyectoDTO> findById(Long id) {
+        return ServiceConvertionHelper.oneToOptionalDto(proyectoRepository.findById(id), ProyectoDTO.class);
     }
     
     @Override
     @Transactional(readOnly = true)
-    public Optional<List<Proyecto>> findAll() {
-        return Optional.ofNullable(proyectoRepository.findAll());
+    public Optional<List<ProyectoDTO>> findAll() {
+        return ServiceConvertionHelper.findList(proyectoRepository.findAll(), ProyectoDTO.class);
     }
 }

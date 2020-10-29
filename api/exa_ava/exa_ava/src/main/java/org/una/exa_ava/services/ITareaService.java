@@ -19,6 +19,7 @@ public interface ITareaService {
     public TareaDTO create(TareaDTO tarea);
     public Optional<TareaDTO> update(TareaDTO tarea, Long id);
     public void delete(Long id);
+    public void deleteAll();
     public Optional<TareaDTO> findById(Long id);
     public Optional<List<TareaDTO>> findByProyectoId(Long id);
     public Optional<List<TareaDTO>> findAll();
