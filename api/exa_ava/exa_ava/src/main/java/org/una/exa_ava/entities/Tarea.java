@@ -53,15 +53,15 @@ public class Tarea implements Serializable {
     @Column(name = "descripcion", length = 200)
     private String descripcion;
     
-    @Column(name = "fecha_inicio", updatable = false)
+    @Column(name = "fecha_inicio", updatable = true)
     @Temporal(TemporalType.DATE)
     @Setter(AccessLevel.NONE)
     private Date fechaInicio;
 
-    @Column(name = "fecha_modificacion")
+    @Column(name = "fecha_registro")
     @Setter(AccessLevel.NONE)
     @Temporal(TemporalType.DATE)
-    private Date fechaModificacion;
+    private Date fechaRegistro;
     
     @Column
     private double importancia;
@@ -82,11 +82,11 @@ public class Tarea implements Serializable {
     public void prePersist() {
         estado=true;
         fechaInicio = new Date();
-        fechaModificacion = new Date();
+        fechaRegistro = new Date();
     }
 
     @PreUpdate
     public void preUpdate() {
-        fechaModificacion = new Date();
+        fechaRegistro = new Date();
     }
 }

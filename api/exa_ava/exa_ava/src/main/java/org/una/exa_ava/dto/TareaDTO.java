@@ -27,7 +27,7 @@ public class TareaDTO {
     private String nombre;
     private String descripcion;
     private Date fechaInicio;
-    private Date fechaModificacion;
+    private Date fechaFinalizacion;
     private double importancia;
     private double urgencia;
     private double procentajeAvance;

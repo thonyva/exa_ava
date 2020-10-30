@@ -55,16 +55,6 @@ public class Proyecto implements Serializable {
     
     @Column(name = "descripcion", length = 200)
     private String descripcion;
-    
-    @Column(name = "fecha_inicio", updatable = false)
-    @Temporal(TemporalType.DATE)
-    @Setter(AccessLevel.NONE)
-    private Date fechaInicio;
-
-    @Column(name = "fecha_modificacion")
-    @Setter(AccessLevel.NONE)
-    @Temporal(TemporalType.DATE)
-    private Date fechaModificacion;
 
     private static final long serialVersionUID = 1L;
     
@@ -74,12 +64,5 @@ public class Proyecto implements Serializable {
     @PrePersist
     public void prePersist() {
         estado=true;
-        fechaInicio = new Date();
-        fechaModificacion = new Date();
-    }
-
-    @PreUpdate
-    public void preUpdate() {
-        fechaModificacion = new Date();
     }
 }

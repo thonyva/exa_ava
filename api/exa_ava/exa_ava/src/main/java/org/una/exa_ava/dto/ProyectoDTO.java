@@ -27,5 +27,5 @@ public class ProyectoDTO {
     private boolean estado;
     private String descripcion;
     private Date fechaInicio;
-    private Date fechaModificacion;
+    private Date fechaFinalizacion;
 }
