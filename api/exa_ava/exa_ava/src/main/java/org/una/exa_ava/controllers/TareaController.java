@@ -33,27 +33,7 @@ import org.una.exa_ava.services.ITareaService;
 public class TareaController {
     @Autowired
     private ITareaService tareaService;
-
-    @GetMapping()
-    @ResponseBody
-    public ResponseEntity<?> findAll() {
-        try {
-            return new ResponseEntity<>(tareaService.findAll(), HttpStatus.OK);
-
-        } catch (Exception e) {
-            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
-        try {
-            return new ResponseEntity(tareaService.findById(id), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
+    
     @PostMapping("/")
     public ResponseEntity<?> create(@RequestBody TareaDTO tareaDTO) {
         try {
@@ -62,8 +42,8 @@ public class TareaController {
             return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-    @PutMapping("/{id}")
+    
+     @PutMapping("/{id}")
     @ResponseBody
     public ResponseEntity<?> update(@PathVariable(value = "id") Long id, @RequestBody TareaDTO tareaDTO) {
         try {
@@ -77,7 +57,7 @@ public class TareaController {
             return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+    
     @DeleteMapping("/{id}")
     public ResponseEntity delete(@PathVariable(value = "id") Long id) {
         try {
@@ -85,6 +65,26 @@ public class TareaController {
             return new ResponseEntity(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    
+    @GetMapping("/{id}")
+    public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
+        try {
+            return new ResponseEntity(tareaService.findById(id), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    
+    @GetMapping()
+    @ResponseBody
+    public ResponseEntity<?> findAll() {
+        try {
+            return new ResponseEntity<>(tareaService.findAll(), HttpStatus.OK);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

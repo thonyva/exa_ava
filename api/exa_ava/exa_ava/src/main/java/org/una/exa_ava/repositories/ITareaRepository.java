@@ -6,6 +6,8 @@
 
 package org.una.exa_ava.repositories;
 
+import java.util.List;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.una.exa_ava.entities.Tarea;
 
@@ -15,5 +17,5 @@ import org.una.exa_ava.entities.Tarea;
  */
 
 public interface ITareaRepository extends JpaRepository<Tarea, Long> {
-    
+    Optional<List<Tarea>> findByProyectoId(long id);
 }

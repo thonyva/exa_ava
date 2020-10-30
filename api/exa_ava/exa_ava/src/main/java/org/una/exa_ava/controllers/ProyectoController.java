@@ -33,27 +33,7 @@ import org.una.exa_ava.services.IProyectoService;
 public class ProyectoController {
     @Autowired
     private IProyectoService proyectoService;
-
-    @GetMapping()
-    @ResponseBody
-    public ResponseEntity<?> findAll() {
-        try {
-            return new ResponseEntity<>(proyectoService.findAll(), HttpStatus.OK);
-
-        } catch (Exception e) {
-            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
-        try {
-            return new ResponseEntity(proyectoService.findById(id), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
+    
     @PostMapping("/")
     public ResponseEntity<?> create(@RequestBody ProyectoDTO proyectoDTO) {
         try {
@@ -61,7 +41,7 @@ public class ProyectoController {
         } catch (Exception e) {
             return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-    }
+    }  
 
     @PutMapping("/{id}")
     @ResponseBody
@@ -77,7 +57,7 @@ public class ProyectoController {
             return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+    
     @DeleteMapping("/{id}")
     public ResponseEntity delete(@PathVariable(value = "id") Long id) {
         try {
@@ -85,6 +65,26 @@ public class ProyectoController {
             return new ResponseEntity(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    
+    @GetMapping("/{id}")
+    public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
+        try {
+            return new ResponseEntity(proyectoService.findById(id), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    
+    @GetMapping()
+    @ResponseBody
+    public ResponseEntity<?> findAll() {
+        try {
+            return new ResponseEntity<>(proyectoService.findAll(), HttpStatus.OK);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
