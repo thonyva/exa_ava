@@ -30,5 +30,5 @@ public class TareaDTO {
     private Date fechaFinalizacion;
     private double importancia;
     private double urgencia;
-    private double procentajeAvance;
+    private double porcentajeAvance;
 }
